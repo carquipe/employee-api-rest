@@ -13,7 +13,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+/* Spring MVC Annotation which is the sum of @Controller annotation
+*  and @ResponseBody annotation */
 @RestController
+
+/* We could add annotation @RequestMapping("employees") to reduce
+*  hardcoded call routes in methods */
 public class EmployeeController{
 
     private final EmployeeRepository repository;
@@ -21,8 +26,6 @@ public class EmployeeController{
     EmployeeController(EmployeeRepository repository){
         this.repository = repository;
     }
-
-    // Aggregate root
 
     @GetMapping("/employees")
     List<Employee> all() {
@@ -34,8 +37,7 @@ public class EmployeeController{
         return repository.save(newEmployee);
     }
 
-    // Single item
-
+    
     @GetMapping("/employees/{id}")
     Employee one(@PathVariable Long id) {
         return repository.findById(id)
